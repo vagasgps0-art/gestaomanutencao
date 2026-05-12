@@ -7,6 +7,8 @@ import { Modal } from './components/Modal'
 import { BulkImport } from './components/BulkImport'
 import { MasterAssets } from './views/MasterAssets'
 import { MasterTechnicians } from './views/MasterTechnicians'
+import { MasterTasks } from './views/MasterTasks'
+import { PositionsPanel } from './views/PositionsPanel'
 
 import { Lock } from 'lucide-react'
 
@@ -81,6 +83,8 @@ function App() {
           onShowMaster={(type) => { setMasterType(type); setView('master') }}
           onShowTerminal={() => setView('terminal')}
           onShowTechs={() => setView('techs')}
+          onShowMasterTasks={() => setView('master-tasks')}
+          onShowPositions={() => setView('positions')}
           onShowSync={() => setView('sync')}
         />
       )}
@@ -100,6 +104,8 @@ function App() {
 
         {view === 'master' && <MasterAssets type={masterType} />}
         {view === 'techs' && <MasterTechnicians />}
+        {view === 'master-tasks' && <MasterTasks />}
+        {view === 'positions' && <PositionsPanel />}
       </main>
     </div>
   )

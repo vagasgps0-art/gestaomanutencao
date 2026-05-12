@@ -51,12 +51,44 @@ CREATE TABLE IF NOT EXISTS tecnicos (
 ALTER TABLE tecnicos DROP CONSTRAINT IF EXISTS tecnicos_cpf_key;
 ALTER TABLE tecnicos ADD CONSTRAINT tecnicos_cpf_key UNIQUE (cpf);
 
+-- Garantir que a tabela de pendências/tarefas exista
+CREATE TABLE IF NOT EXISTS unit_tasks (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    unit_id TEXT REFERENCES unidades(sigla),
+    title TEXT NOT NULL,
+    description TEXT,
+    requester TEXT,
+    category TEXT,
+    task_date DATE,
+    status TEXT DEFAULT 'Pendente',
+    created_at TIMESTAMPTZ DEFAULT now(),
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
 
+-- Garantir que a tabela de postos de trabalho exista
+CREATE TABLE IF NOT EXISTS unit_positions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    unit_id TEXT REFERENCES unidades(sigla),
+    position_name TEXT NOT NULL,
+    status TEXT DEFAULT 'Ocupado',
+    comment TEXT,
+    created_at TIMESTAMPTZ DEFAULT now(),
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+    sigla TEXT PRIMARY KEY,
+    nome TEXT NOT NULL,
+    regional TEXT NOT NULL,
+    analista TEXT,
+    supervisor TEXT,
+    endereco TEXT,
+    headcount INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
 -- 3. CADASTRO DAS 25 UNIDADES (SINCRONIA TOTAL)
 -- ----------------------------------------------------------
-INSERT INTO unidades (sigla, nome, regional, analista, supervisor, endereco)
+INSERT INTO unidades (sigla, nome, regional, analista, supervisor, endereco, headcount)
 VALUES 
-('SSC2', 'Biguaçu', 'PRSC', 'Washington', 'Felipe', 'Rua Edgard Hoffmann, 496 - Biguaçu, SC'),
 ('SSC3', 'Blumenau', 'PRSC', 'Washington', 'Felipe', 'Rua Madre Paulina, 560 - Gaspar/SC'),
 ('SSC4', 'Chapecó', 'RSSC', 'Daniel Specht', 'Felipe', 'BR-158 - Vila Esperança, São Bráz - Pato Branco/PR - Maps'),
 ('SSC5', 'Criciúma', 'PRSC', 'Washington', 'Felipe', 'Rod. Genésio Mazon, 4 - Morro da Fumaça - SC'),
@@ -91,3 +123,5 @@ ON CONFLICT (sigla) DO UPDATE SET
 -- ==========================================================
 -- FIM DO SCRIPT
 -- ==========================================================
+
+-- ALTER TABLE unidades ADD COLUMN IF NOT EXISTS headcount INTEGER DEFAULT 0;

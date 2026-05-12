@@ -10,6 +10,7 @@ import { cn } from '../lib/utils';
 import * as XLSX from 'xlsx';
 import { getUnidadeBySigla } from '../config/unidades';
 import { QRCodeSVG } from 'qrcode.react';
+import { UnitTasks } from '../components/UnitTasks';
 
 export function UnitDashboard({ sigla, isKiosk }) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -143,7 +144,7 @@ export function UnitDashboard({ sigla, isKiosk }) {
                 <Plus className="w-3.5 h-3.5" /> Novo Ativo
               </button>
               <button 
-                onClick={() => window.open(`/?view=form&unit=${sigla}`, '_blank')}
+                onClick={() => window.open(`${import.meta.env.BASE_URL}?view=form&unit=${sigla}`, '_blank')}
                 className="btn-primary bg-slate-100 !text-slate-600 border border-slate-200 shadow-none hover:bg-slate-200"
               >
                 <PackagePlus className="w-3.5 h-3.5" /> Abrir Formulário do Técnico
@@ -183,6 +184,15 @@ export function UnitDashboard({ sigla, isKiosk }) {
           Técnicos
         </button>
         <button 
+           onClick={() => setTab('tarefas')}
+           className={cn(
+            "px-6 py-2 rounded-full text-[10px] font-black uppercase transition-all shadow-sm",
+            tab === 'tarefas' ? "bg-primary text-white" : "bg-white text-slate-500 border border-slate-100"
+          )}
+        >
+          Pendências
+        </button>
+        <button 
            onClick={() => setTab('compra')}
            className={cn(
             "px-6 py-2 rounded-full text-[10px] font-black uppercase transition-all shadow-sm flex items-center gap-2",
@@ -190,6 +200,15 @@ export function UnitDashboard({ sigla, isKiosk }) {
           )}
         >
           <ShoppingBag className="w-3.5 h-3.5" /> Lista de Compra
+        </button>
+        <button 
+           onClick={() => setTab('qrcodes')}
+           className={cn(
+            "px-6 py-2 rounded-full text-[10px] font-black uppercase transition-all shadow-sm flex items-center gap-2",
+            tab === 'qrcodes' ? "bg-accent text-slate-800" : "bg-white text-slate-500 border border-slate-100"
+          )}
+        >
+          <QrCode className="w-3.5 h-3.5" /> Central QR
         </button>
       </div>
       )}
@@ -307,7 +326,7 @@ export function UnitDashboard({ sigla, isKiosk }) {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-slate-100 pb-6 mb-6">
             <div className="flex items-center gap-6">
               <div className="p-4 bg-white border-2 border-slate-100 rounded-2xl shadow-sm">
-                 <QRCodeSVG value={`${window.location.origin}/?unit=${sigla}&tab=estoque&kiosk=true`} size={80} level="H" />
+                 <QRCodeSVG value={`${window.location.origin}${import.meta.env.BASE_URL}?unit=${sigla}&tab=estoque&kiosk=true`} size={80} level="H" />
               </div>
               <div>
                 <h2 className="text-2xl font-black text-slate-800 uppercase italic leading-none">Estoque Completo</h2>
@@ -369,7 +388,7 @@ export function UnitDashboard({ sigla, isKiosk }) {
                 <h1 className="text-2xl font-bold uppercase italic tracking-tighter">Inventário de Estoque</h1>
                 <p className="text-sm font-bold uppercase tracking-widest mt-1">Unidade: {unitInfo?.nome || sigla}</p>
               </div>
-              <QRCodeSVG value={`${window.location.origin}/?unit=${sigla}&tab=estoque&kiosk=true`} size={80} level="H" />
+              <QRCodeSVG value={`${window.location.origin}${import.meta.env.BASE_URL}?unit=${sigla}&tab=estoque&kiosk=true`} size={80} level="H" />
             </div>
 
             <table className="w-full text-left border-collapse border border-black text-xs">
@@ -402,6 +421,9 @@ export function UnitDashboard({ sigla, isKiosk }) {
                 )}
               </tbody>
             </table>
+            <div className="mt-8 text-center text-[10px] text-black italic font-bold">
+              © Desenvolvido por Airton Simão DevOps. Todos os direitos reservados.
+            </div>
         </div>
         </>
       )}
@@ -464,6 +486,11 @@ export function UnitDashboard({ sigla, isKiosk }) {
           </div>
         </div>
       )}
+
+      {tab === 'tarefas' && (
+        <UnitTasks unit={sigla} />
+      )}
+
       {tab === 'compra' && (
         <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500">
           <div className="flex justify-between items-center bg-red-50 p-6 rounded-[2rem] border border-red-100 shadow-sm">
@@ -520,6 +547,58 @@ export function UnitDashboard({ sigla, isKiosk }) {
                 )}
               </tbody>
             </table>
+          </div>
+        </div>
+      )}
+
+      {tab === 'qrcodes' && (
+        <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100 print:shadow-none print:border-none print:p-0 print:bg-transparent">
+          <div className="flex justify-between items-center border-b border-slate-100 pb-6 mb-8 print:hidden">
+            <div>
+              <h2 className="text-2xl font-black text-slate-800 uppercase italic leading-none">Central de Acessos QR</h2>
+              <p className="text-sm text-slate-500 mt-1">Imprima esta página para ter acesso rápido aos recursos da unidade.</p>
+            </div>
+            <button 
+              onClick={() => window.print()}
+              className="btn-primary bg-primary text-white shadow-lg"
+            >
+              <Printer className="w-4 h-4" /> Imprimir Folha
+            </button>
+          </div>
+
+          <div className="hidden print:block text-center mb-10 text-black">
+            <h1 className="text-4xl font-black uppercase italic tracking-tighter border-b-4 border-black inline-block pb-2">Acessos Rápidos - {unitInfo?.nome || sigla}</h1>
+          </div>
+
+          <div className="flex flex-col md:flex-row justify-center items-center gap-10 print:flex-row print:justify-around print:gap-4 print:mt-12">
+            
+            {/* QR Code Estoque */}
+            <div className="flex flex-col items-center text-center p-8 border-2 border-slate-200 rounded-3xl w-full max-w-sm print:border-4 print:border-black print:w-[45%]">
+              <div className="bg-slate-100 p-4 rounded-full mb-4 print:hidden">
+                <Smartphone className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-black uppercase italic text-slate-800 mb-2 print:text-2xl print:mb-4 print:text-black">Lista de Estoque</h3>
+              <p className="text-sm text-slate-500 mb-8 print:text-base print:text-black font-bold leading-tight">Escaneie para visualizar o inventário atualizado em tempo real.</p>
+              <div className="p-4 bg-white border border-slate-200 rounded-2xl print:border-none print:p-0">
+                <QRCodeSVG value={`${window.location.origin}${import.meta.env.BASE_URL}?unit=${sigla}&tab=estoque&kiosk=true`} size={200} level="H" className="print:w-[250px] print:h-[250px]" />
+              </div>
+            </div>
+
+            {/* QR Code Formulário */}
+            <div className="flex flex-col items-center text-center p-8 border-2 border-slate-200 rounded-3xl w-full max-w-sm print:border-4 print:border-black print:w-[45%]">
+              <div className="bg-slate-100 p-4 rounded-full mb-4 print:hidden">
+                <PackagePlus className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-black uppercase italic text-slate-800 mb-2 print:text-2xl print:mb-4 print:text-black">Adicionar Peça</h3>
+              <p className="text-sm text-slate-500 mb-8 print:text-base print:text-black font-bold leading-tight">Escaneie para registrar a entrada de novas peças no estoque.</p>
+              <div className="p-4 bg-white border border-slate-200 rounded-2xl print:border-none print:p-0">
+                <QRCodeSVG value={`${window.location.origin}${import.meta.env.BASE_URL}?view=form&unit=${sigla}`} size={200} level="H" className="print:w-[250px] print:h-[250px]" />
+              </div>
+            </div>
+
+          </div>
+          <div className="hidden print:block mt-16 text-center text-[10px] text-black italic font-bold">
+            © Desenvolvido por Airton Simão DevOps. Todos os direitos reservados.
           </div>
         </div>
       )}

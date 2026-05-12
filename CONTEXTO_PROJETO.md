@@ -17,3 +17,22 @@
 - Criado o componente isolado `TechnicianForm.jsx` que atua como um "Google Forms", porÃ©m conectado diretamente ao Supabase.
 - Quando acessado via `/?view=form&unit=SIGLA`, ele exibe uma interface limpa amigÃ¡vel para celular, ignora a necessidade de login e jÃ¡ lista no campo "TAG" apenas os equipamentos reais daquela unidade.
 - Adicionado o botÃ£o "Abrir FormulÃ¡rio do TÃ©cnico" no painel da unidade para vocÃª extrair e enviar o link facilmente aos tÃ©cnicos.
+
+- Adicionada aba 'Central QR' no UnitDashboard contendo QR Codes de visualização e formulário com layout otimizado para impressão (A4).
+
+- Corrigida grafia do nome de analista (Fernando Beckemkamp) no arquivo de configuração estático.
+
+- Rebranding do sistema para Gestão de Ativos Críticos (GAC) e inserção de direitos autorais.
+
+- **12/05/2026**: Adicionada a aba 'Pendências' no painel das unidades (UnitDashboard.jsx).
+- Implementado um Quadro Kanban visual (UnitTasks.jsx) para acompanhamento de solicitações e tarefas (Ferramentas, Uniformes, etc) categorizadas por status.
+- Criada a tabela unit_tasks no Supabase para salvar estas tratativas e vinculá-las a cada unidade.
+
+- Criada a 'Central Mestra de Pendências' (MasterTasks.jsx) acessível pelo menu lateral, permitindo visualização, filtro e gestão de pendências de todas as 25 unidades simultaneamente em formato de tabela interativa.
+
+- Criado o 'Painel Tático de Vagas' (PositionsPanel.jsx), uma visão global estilo 'campo de futebol' para gerenciar o headcount, postos vagos e substituições, separados por Regional e Unidade.
+- Adicionada tabela unit_positions no Supabase.
+
+- Adicionada funcionalidade de Sincronização Automática (Botão 'Sincronizar Técnicos Atuais') no Painel de Vagas para autogerar as posições com base nos técnicos cadastrados no sistema.
+
+- Adicionada configuração de Matriz de Headcount editável por unidade no Painel Tático de Vagas, gerando postos vagos automaticamente para as cadeiras ociosas.

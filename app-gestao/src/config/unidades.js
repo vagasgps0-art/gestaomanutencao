@@ -19,12 +19,12 @@ export const REGIONAIS = {
     { sigla: "RS01", nome: "METROFULL", regional: "RSSC", analista: "Fabio Linhares", supervisor: "Airton/felipe", endereco: "Av. Borges de Medeiros, 1771 - Sapucaia do Sul - RS" },
     { sigla: "SPR1", nome: "Curitiba", regional: "RSSC", analista: "Daniel Specht", supervisor: "Jonas", endereco: "Rodovia Federal BR 277, KM 584, Lote 391-C-13A, Cascavel/PR - Maps" },
     { sigla: "SRS1", nome: "Porto Alegre", regional: "RSSC", analista: "Flavio Brum", supervisor: "Airton/felipe", endereco: "Rua da Várzea, 481, Jardim São Pedro, Porto Alegre/RS" },
-    { sigla: "SRS10", nome: "Estrela", regional: "RSSC", analista: "Ferando Beckemkamp", supervisor: "Airton/felipe", endereco: "BR 386, KM 356, Servidão de Passagem, Estrela/RS" },
-    { sigla: "SRS2", nome: "Pelotas", regional: "RSSC", analista: "Ferando Beckemkamp", supervisor: "Airton/felipe", endereco: "Avenida Presidente João Belchior Marques Goulart, 8.831" },
-    { sigla: "SRS3", nome: "Santa Maria", regional: "RSSC", analista: "Fenando", supervisor: "Airton/felipe", endereco: "ROD. RST 287, KM 240, Nº 3250 Faixa Nova Camobi" },
+    { sigla: "SRS10", nome: "Estrela", regional: "RSSC", analista: "Fernando Beckemkamp", supervisor: "Airton/felipe", endereco: "BR 386, KM 356, Servidão de Passagem, Estrela/RS" },
+    { sigla: "SRS2", nome: "Pelotas", regional: "RSSC", analista: "Fernando Beckemkamp", supervisor: "Airton/felipe", endereco: "Avenida Presidente João Belchior Marques Goulart, 8.831" },
+    { sigla: "SRS3", nome: "Santa Maria", regional: "RSSC", analista: "Fernando", supervisor: "Airton/felipe", endereco: "ROD. RST 287, KM 240, Nº 3250 Faixa Nova Camobi" },
     { sigla: "SRS4", nome: "Flores da Cunha", regional: "RSSC", analista: "Flavio Brum", supervisor: "Airton/felipe", endereco: "Estrada das Indústrias, 2030 - Lagoa Bella, Flores de Cunha" },
-    { sigla: "SRS5", nome: "Passo Fundo", regional: "RSSC", analista: "Ferando Beckemkamp", supervisor: "Airton/felipe", endereco: "Rua Alôncio de Camargo, 1000 - Integração, Passo Fundo/RS" },
-    { sigla: "SRS7", nome: "Ijuí", regional: "RSSC", analista: "Ferando Beckemkamp", supervisor: "Airton/felipe", endereco: "RS-522 n° 280 - Rua Augusto Pestana, Ijuí/RS" },
+    { sigla: "SRS5", nome: "Passo Fundo", regional: "RSSC", analista: "Fernando Beckemkamp", supervisor: "Airton/felipe", endereco: "Rua Alôncio de Camargo, 1000 - Integração, Passo Fundo/RS" },
+    { sigla: "SRS7", nome: "Ijuí", regional: "RSSC", analista: "Fernando Beckemkamp", supervisor: "Airton/felipe", endereco: "RS-522 n° 280 - Rua Augusto Pestana, Ijuí/RS" },
     { sigla: "SRS8", nome: "Sapucaia do Sul", regional: "RSSC", analista: "Fabio Linhares", supervisor: "Airton/felipe", endereco: "Av. Borges de Medeiros, 1771 - Sapucaia do Sul - RS" },
     { sigla: "SRS9", nome: "Nova Santa Rita", regional: "RSSC", analista: "Fabio Linhares", supervisor: "Airton/felipe", endereco: "BR-277, KM348 - Jardim das Americas, Guarapuava/PR" }
   ]

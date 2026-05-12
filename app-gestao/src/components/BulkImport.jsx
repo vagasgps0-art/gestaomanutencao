@@ -100,7 +100,7 @@ export function BulkImport({ onComplete }) {
     }];
     XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(tecnicosTemplate), "Tecnicos");
 
-    XLSX.writeFile(wb, "Modelo_Importacao_GPS.xlsx");
+    XLSX.writeFile(wb, "Modelo_Importacao_Ativos.xlsx");
   };
 
   const processFile = async (event) => {

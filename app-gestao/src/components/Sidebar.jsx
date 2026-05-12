@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { ShieldCheck, BarChart3, Users, Smartphone, FileSpreadsheet, LayoutGrid, ChevronDown, Search } from 'lucide-react';
+import { ShieldCheck, BarChart3, Users, Smartphone, FileSpreadsheet, LayoutGrid, ChevronDown, Search, UserPlus } from 'lucide-react';
 import { REGIONAIS } from '../config/unidades';
 import { cn } from '../lib/utils';
-
-export function Sidebar({ onSelectUnit, onShowHome, onShowMaster, onShowTerminal, onShowTechs, onShowSync }) {
+export function Sidebar({ onSelectUnit, onShowHome, onShowMaster, onShowTerminal, onShowTechs, onShowMasterTasks, onShowPositions, onShowSync }) {
   const [openRegionals, setOpenRegionals] = useState({ "SUL": true });
   const [search, setSearch] = useState("");
 
@@ -20,9 +19,15 @@ export function Sidebar({ onSelectUnit, onShowHome, onShowMaster, onShowTerminal
             <ShieldCheck className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-xs font-black tracking-widest uppercase text-accent italic leading-none">GPS Maintenance</h1>
-            <p className="text-[9px] opacity-50 uppercase font-bold tracking-tighter mt-1">Portal de Gestão</p>
+            <h1 className="text-xs font-black tracking-widest uppercase text-accent italic leading-none">Gestão de Ativos</h1>
+            <p className="text-[9px] opacity-50 uppercase font-bold tracking-tighter mt-1">Críticos (GAC)</p>
           </div>
+        </div>
+        <div className="mt-4 pt-4 border-t border-white/5">
+          <p className="text-[8px] text-white/30 font-bold tracking-wider uppercase leading-tight">
+            © Desenvolvido por Airton Simão DevOps<br/>
+            Todos os direitos reservados.
+          </p>
         </div>
       </div>
 
@@ -63,6 +68,20 @@ export function Sidebar({ onSelectUnit, onShowHome, onShowMaster, onShowTerminal
             >
               <Users className="w-4 h-4 mx-auto mb-1 opacity-40 group-hover:opacity-100" />
               <p className="text-[7px] font-black uppercase leading-tight">Técnicos</p>
+            </button>
+            <button 
+              onClick={onShowMasterTasks}
+              className="p-2 rounded-xl bg-orange-500/10 text-orange-400 border border-orange-500/20 hover:bg-orange-500 hover:text-white transition-all text-center group"
+            >
+              <FileSpreadsheet className="w-4 h-4 mx-auto mb-1 opacity-40 group-hover:opacity-100" />
+              <p className="text-[7px] font-black uppercase leading-tight">Pendências</p>
+            </button>
+            <button 
+              onClick={onShowPositions}
+              className="p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 hover:bg-purple-500 hover:text-white transition-all text-center group"
+            >
+              <UserPlus className="w-4 h-4 mx-auto mb-1 opacity-40 group-hover:opacity-100" />
+              <p className="text-[7px] font-black uppercase leading-tight">Quadro Vagas</p>
             </button>
             <button 
               onClick={onShowTerminal}
