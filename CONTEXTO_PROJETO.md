@@ -36,3 +36,7 @@
 - Adicionada funcionalidade de Sincronização Automática (Botão 'Sincronizar Técnicos Atuais') no Painel de Vagas para autogerar as posições com base nos técnicos cadastrados no sistema.
 
 - Adicionada configuração de Matriz de Headcount editável por unidade no Painel Tático de Vagas, gerando postos vagos automaticamente para as cadeiras ociosas.
+
+- Isolamento de chaves de ambiente do Supabase implementado. Código fonte higienizado e .env adicionado ao .gitignore para segurança.
+
+- Deploy automático via gh-pages configurado para o GitHub Pages. Link público gerado: https://vagasgps0-art.github.io/paienelgestao
