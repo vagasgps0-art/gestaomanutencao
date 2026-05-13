@@ -40,3 +40,5 @@
 - Isolamento de chaves de ambiente do Supabase implementado. Código fonte higienizado e .env adicionado ao .gitignore para segurança.
 
 - Deploy automático via gh-pages configurado para o GitHub Pages. Link público gerado: https://vagasgps0-art.github.io/paienelgestao
+
+- Código reconfigurado para suportar deploy via Vercel (limpeza das amarras do GitHub Pages).

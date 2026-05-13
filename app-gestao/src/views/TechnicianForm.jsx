@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { getUnidadeBySigla } from '../config/unidades';
+import { useUnidades } from '../contexts/UnidadesContext';
 import { PackagePlus, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 export function TechnicianForm({ sigla }) {
+  const { getUnidadeBySigla } = useUnidades();
   const [ativos, setAtivos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);

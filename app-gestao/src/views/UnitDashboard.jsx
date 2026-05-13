@@ -8,11 +8,12 @@ import { RegisterPart } from '../components/RegisterPart';
 import { RegisterTechnician } from '../components/RegisterTechnician';
 import { cn } from '../lib/utils';
 import * as XLSX from 'xlsx';
-import { getUnidadeBySigla } from '../config/unidades';
+import { useUnidades } from '../contexts/UnidadesContext';
 import { QRCodeSVG } from 'qrcode.react';
 import { UnitTasks } from '../components/UnitTasks';
 
 export function UnitDashboard({ sigla, isKiosk }) {
+  const { getUnidadeBySigla } = useUnidades();
   const urlParams = new URLSearchParams(window.location.search);
   const initialTab = urlParams.get('tab') || 'ativos';
 

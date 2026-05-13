@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { FileSpreadsheet, AlertTriangle, CheckCircle2, Loader2, Download } from 'lucide-react';
 import * as XLSX from 'xlsx';
-import { REGIONAIS } from '../config/unidades';
+import { useUnidades } from '../contexts/UnidadesContext';
 
 export function BulkImport({ onComplete }) {
+  const { regionais, refreshUnidades } = useUnidades();
   const [loading, setLoading] = useState(false);
   const [logs, setLogs] = useState([]);
 
@@ -60,7 +61,7 @@ export function BulkImport({ onComplete }) {
     const wb = XLSX.utils.book_new();
     
     // 1. Unidades (Com dados atuais como exemplo)
-    const unidadesData = Object.values(REGIONAIS).flat().map(u => ({
+    const unidadesData = Object.values(regionais).flat().map(u => ({
       'Sigla': u.sigla, 'Unidade': u.nome, 'Regional': u.regional, 'Analista': u.analista, 'Supervisor': u.supervisor, 'Endereco': u.endereco
     }));
     XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(unidadesData), "Unidades");
@@ -269,6 +270,7 @@ export function BulkImport({ onComplete }) {
         }
 
         addLog("🎉 Sincronização Finalizada com Sucesso!", 'success');
+        refreshUnidades();
         if (onComplete) setTimeout(onComplete, 2000);
 
       } catch (err) {

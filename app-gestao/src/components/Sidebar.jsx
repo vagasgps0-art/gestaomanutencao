@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { ShieldCheck, BarChart3, Users, Smartphone, FileSpreadsheet, LayoutGrid, ChevronDown, Search, UserPlus } from 'lucide-react';
-import { REGIONAIS } from '../config/unidades';
+import { useUnidades } from '../contexts/UnidadesContext';
 import { cn } from '../lib/utils';
 export function Sidebar({ onSelectUnit, onShowHome, onShowMaster, onShowTerminal, onShowTechs, onShowMasterTasks, onShowPositions, onShowSync }) {
+  const { regionais: REGIONAIS } = useUnidades();
   const [openRegionals, setOpenRegionals] = useState({ "SUL": true });
   const [search, setSearch] = useState("");
 

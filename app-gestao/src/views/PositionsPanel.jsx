@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { REGIONAIS } from '../config/unidades';
+import { useUnidades } from '../contexts/UnidadesContext';
 import { Modal } from '../components/Modal';
 import { Users, Plus, LayoutDashboard, Search, Settings2, Trash2, DownloadCloud, Grid3X3, List, LayoutGrid } from 'lucide-react';
 import { cn } from '../lib/utils';
@@ -8,6 +8,7 @@ import { cn } from '../lib/utils';
 const STATUSES = ['Ocupado', 'Vago', 'Substituição'];
 
 export function PositionsPanel() {
+  const { regionais: REGIONAIS } = useUnidades();
   const [positions, setPositions] = useState([]);
   const [unitHeadcounts, setUnitHeadcounts] = useState({});
   const [loading, setLoading] = useState(true);
